@@ -28,7 +28,7 @@ import { serializeContext, type ChatContextPayload } from "./context";
 interface CompletionRequestBase {
   model: string;
   messages: Array<{ role: "system" | "user" | "assistant"; content: string }>;
-  /** GPT-5.6 rejects legacy `max_tokens`; always use `max_completion_tokens`. */
+  /** GPT-5.6-safe completion budget. Never send the legacy token-cap field. */
   max_completion_tokens?: number;
   response_format?: {
     type: "json_schema";

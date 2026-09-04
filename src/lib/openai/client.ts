@@ -9,9 +9,9 @@
  *   - gpt-5.6-luna  : default model for routine chat / agent responses.
  *   - gpt-5.6-terra : deep model for finance / policy / reports.
  *
- * Both models reject legacy `max_tokens` and custom `temperature` values.
- * Completions must use `max_completion_tokens` and omit `temperature`
- * (API default = 1).
+ * Both models reject the legacy completion token cap and custom
+ * temperature values. Completions must use `max_completion_tokens` and
+ * omit `temperature` (API default = 1).
  */
 import OpenAI from "openai";
 
