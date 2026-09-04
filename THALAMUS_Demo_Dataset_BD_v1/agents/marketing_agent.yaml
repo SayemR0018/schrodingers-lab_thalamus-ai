@@ -1,0 +1,32 @@
+agent:
+  id: "marketing_agent"
+  name: "Marketing Agent"
+  status: "active"
+  purpose: "Identify customer and product opportunities for targeted marketing."
+
+  data_sources:
+    - customers
+    - orders
+    - order_items
+    - products
+    - reviews
+
+  capabilities:
+    - customer_segmentation
+    - repeat_customer_analysis
+    - product_promotion_candidates
+    - category_demand_analysis
+    - inactive_customer_detection
+
+  example_questions:
+    - "Which customers should we target?"
+    - "Which products should we promote?"
+    - "Which customer segment is becoming inactive?"
+
+  output:
+    required:
+      - opportunity
+      - target_segment
+      - evidence
+      - confidence
+      - recommendation

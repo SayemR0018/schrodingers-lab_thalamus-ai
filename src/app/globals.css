@@ -1,0 +1,751 @@
+@import "tailwindcss";
+
+/* ============================================
+   THALAMUS AI — Design Tokens
+   ============================================ */
+
+:root {
+  /* Light Theme (Warm Cream) */
+  --background: 40 30% 97%;
+  --background-subtle: 40 25% 95%;
+  --surface: 40 20% 98%;
+  --surface-elevated: 0 0% 100%;
+  --surface-glass: 40 30% 99% / 0.8;
+  
+  --foreground: 230 30% 15%;
+  --foreground-muted: 230 15% 40%;
+  --foreground-subtle: 230 10% 55%;
+  
+  --border: 230 15% 88%;
+  --border-subtle: 230 10% 92%;
+  
+  --accent: 260 55% 52%;
+  --accent-foreground: 0 0% 100%;
+  --accent-soft: 260 40% 95%;
+  --accent-muted: 260 30% 85%;
+  
+  --success: 145 60% 40%;
+  --success-soft: 145 50% 92%;
+  
+  --warning: 35 90% 50%;
+  --warning-soft: 35 80% 92%;
+  
+  --destructive: 0 70% 50%;
+  --destructive-soft: 0 60% 95%;
+  
+  --locked: 230 10% 60%;
+  --locked-soft: 230 8% 92%;
+  
+  /* Agent Colors (restrained) */
+  --agent-sales: 260 50% 55%;
+  --agent-marketing: 25 80% 55%;
+  --agent-inventory: 145 50% 45%;
+  --agent-customer: 210 60% 50%;
+  --agent-finance: 280 45% 50%;
+  --agent-policy: 188 55% 38%;
+  --agent-automation: 230 10% 55%;
+  
+  /* Canvas */
+  --canvas-bg: 40 25% 96%;
+  --canvas-grid: 230 10% 85%;
+  --canvas-line: 260 40% 70%;
+  --canvas-line-subtle: 260 30% 80%;
+  
+  /* Glass */
+  --glass-bg: 40 30% 99% / 0.7;
+  --glass-border: 230 20% 90% / 0.6;
+  --glass-shadow: 230 30% 20% / 0.04;
+  
+  /* Spacing */
+  --sidebar-width: 240px;
+  --sidebar-collapsed: 64px;
+  --topbar-height: 56px;
+  --assistant-width: 340px;
+  --assistant-collapsed: 0px;
+  
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 200ms ease;
+  --transition-slow: 300ms ease;
+}
+
+.dark {
+  /* Dark Theme — Neutral ChatGPT-like aesthetic */
+  /* Deep charcoal backgrounds, neutral grays, minimal accent */
+  
+  --background: 0 0% 8%;
+  --background-subtle: 0 0% 10%;
+  --surface: 0 0% 12%;
+  --surface-elevated: 0 0% 16%;
+  --surface-glass: 0 0% 14% / 0.9;
+  
+  --foreground: 0 0% 93%;
+  --foreground-muted: 0 0% 65%;
+  --foreground-subtle: 0 0% 50%;
+  
+  --border: 0 0% 20%;
+  --border-subtle: 0 0% 16%;
+  
+  /* Accent — violet only for highlights, buttons, selected states */
+  --accent: 260 50% 60%;
+  --accent-foreground: 0 0% 100%;
+  --accent-soft: 260 30% 20%;
+  --accent-muted: 260 25% 25%;
+  
+  --success: 145 50% 45%;
+  --success-soft: 145 30% 15%;
+  
+  --warning: 35 75% 50%;
+  --warning-soft: 35 40% 15%;
+  
+  --destructive: 0 60% 50%;
+  --destructive-soft: 0 40% 15%;
+  
+  --locked: 0 0% 45%;
+  --locked-soft: 0 0% 18%;
+  
+  /* Agent Colors (restrained in dark mode) */
+  --agent-sales: 260 45% 60%;
+  --agent-marketing: 25 65% 55%;
+  --agent-inventory: 145 40% 50%;
+  --agent-customer: 210 50% 55%;
+  --agent-finance: 280 40% 55%;
+  --agent-policy: 188 45% 50%;
+  --agent-automation: 0 0% 45%;
+  
+  /* Canvas — neutral charcoal */
+  --canvas-bg: 0 0% 10%;
+  --canvas-grid: 0 0% 18%;
+  --canvas-line: 0 0% 40%;
+  --canvas-line-subtle: 0 0% 28%;
+  
+  /* Glass — neutral, no purple tint */
+  --glass-bg: 0 0% 14% / 0.85;
+  --glass-border: 0 0% 25% / 0.5;
+  --glass-shadow: 0 0% 0% / 0.2;
+}
+
+/* ============================================
+   Tailwind Theme Integration
+   ============================================ */
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-background-subtle: hsl(var(--background-subtle));
+  --color-surface: hsl(var(--surface));
+  --color-surface-elevated: hsl(var(--surface-elevated));
+  --color-surface-glass: hsl(var(--surface-glass));
+
+  --color-foreground: hsl(var(--foreground));
+  --color-foreground-muted: hsl(var(--foreground-muted));
+  --color-foreground-subtle: hsl(var(--foreground-subtle));
+
+  --color-border: hsl(var(--border));
+  --color-border-subtle: hsl(var(--border-subtle));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-accent-soft: hsl(var(--accent-soft));
+  --color-accent-muted: hsl(var(--accent-muted));
+
+  --color-success: hsl(var(--success));
+  --color-success-soft: hsl(var(--success-soft));
+
+  --color-warning: hsl(var(--warning));
+  --color-warning-soft: hsl(var(--warning-soft));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-soft: hsl(var(--destructive-soft));
+
+  --color-locked: hsl(var(--locked));
+  --color-locked-soft: hsl(var(--locked-soft));
+
+  --color-canvas-bg: hsl(var(--canvas-bg));
+  --color-canvas-grid: hsl(var(--canvas-grid));
+  --color-canvas-line: hsl(var(--canvas-line));
+  --color-canvas-line-subtle: hsl(var(--canvas-line-subtle));
+
+  --font-sans: var(--font-hind-siliguri), var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+
+  /* Registered so the `*-muted` utilities exist for the landing surface,
+     which re-points --color-muted at its own palette in `.landing-scope`. */
+  --color-muted: hsl(var(--foreground-muted));
+}
+
+/* ============================================
+   Localization utilities
+   ============================================ */
+
+/* Bengali script needs slightly looser line-height so vowel marks
+   (কার, হসন্ত) and conjuncts (যুক্তাক্ষর: ক্ষ, জ্ঞ, ত্র) render unclipped. */
+.lang-bn {
+  font-family: var(--font-hind-siliguri), var(--font-geist-sans),
+    system-ui, sans-serif;
+  line-height: 1.7;
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+
+/* The landing subtree is excluded because it re-points `--border` at its own
+   rgba palette, where `hsl()` would be invalid and would clobber the
+   `border-[color:var(--border)]` utilities those components rely on. */
+:not(.landing-scope, .landing-scope *) {
+  border-color: hsl(var(--border));
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-sans);
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   Glass Surface Utility
+   ============================================ */
+
+.glass {
+  background: hsl(var(--glass-bg));
+  backdrop-filter: blur(12px);
+  border: 1px solid hsl(var(--glass-border));
+  box-shadow: 
+    0 1px 2px hsl(var(--glass-shadow)),
+    0 4px 12px hsl(var(--glass-shadow));
+}
+
+.glass-subtle {
+  background: hsl(var(--surface-glass));
+  backdrop-filter: blur(8px);
+  border: 1px solid hsl(var(--border-subtle));
+}
+
+/* ============================================
+   Canvas Grid Pattern
+   ============================================ */
+
+.canvas-grid {
+  background-color: hsl(var(--canvas-bg));
+  background-image: radial-gradient(
+    circle,
+    hsl(var(--canvas-grid)) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+}
+
+/* ============================================
+   Scrollbar Styling
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--foreground-subtle));
+}
+
+/* ============================================
+   Focus States
+   ============================================ */
+
+:focus-visible {
+  outline: 2px solid hsl(var(--accent));
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Selection
+   ============================================ */
+
+::selection {
+  background: hsl(var(--accent-soft));
+  color: hsl(var(--foreground));
+}
+
+/* ============================================
+   React Flow Overrides
+   ============================================ */
+
+.react-flow__background {
+  background-color: hsl(var(--canvas-bg)) !important;
+}
+
+.react-flow__controls {
+  box-shadow: none !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: var(--radius-md) !important;
+  overflow: hidden;
+}
+
+.react-flow__controls-button {
+  background: hsl(var(--surface)) !important;
+  border: none !important;
+  border-bottom: 1px solid hsl(var(--border)) !important;
+  color: hsl(var(--foreground-muted)) !important;
+  width: 28px !important;
+  height: 28px !important;
+}
+
+.react-flow__controls-button:hover {
+  background: hsl(var(--surface-elevated)) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+.react-flow__controls-button:last-child {
+  border-bottom: none !important;
+}
+
+.react-flow__controls-button svg {
+  max-width: 14px !important;
+  max-height: 14px !important;
+}
+
+/* ============================================
+   Reduced Motion
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================================
+   LANDING SURFACE — scoped design system
+   ============================================================================
+
+   The marketing/onboarding surface (`/`, `/login`, `/onboarding`, `/handoff`)
+   ships its own palette. It uses the same token *names* as the workspace
+   (`--background`, `--accent`, `--border`, ...) but expresses them as hex/rgba
+   consumed via `var(--token)`, whereas the workspace stores HSL channel
+   triplets consumed via `hsl(var(--token))`.
+
+   Rather than convert either palette (which would shift colors), the landing
+   tokens are re-declared on the `.landing-scope` wrapper rendered by
+   `src/app/(landing)/layout.tsx`. Every descendant — hand-written rules and
+   Tailwind utilities alike — then resolves against the landing palette, while
+   everything outside keeps the workspace palette.
+
+   `--color-*` are re-declared alongside the raw tokens because Tailwind
+   substitutes custom properties at their declaration site: overriding
+   `--background` alone would not reach `--color-background`.
+
+   These rules are intentionally unlayered, matching the original stylesheet,
+   so they keep winning over Tailwind's layered utilities exactly as before.
+   ========================================================================= */
+
+.landing-scope {
+  --background: #f4f4f7;
+  --background-deep: #ececf2;
+  --foreground: #0c0d12;
+  --muted: #5b6172;
+  --surface: #ffffff;
+  --surface-glass: rgba(255, 255, 255, 0.58);
+  --surface-glass-strong: rgba(255, 255, 255, 0.78);
+  --border: rgba(18, 16, 36, 0.08);
+  --border-strong: rgba(92, 70, 180, 0.16);
+  --accent: #6a53e0;
+  --accent-deep: #5340c9;
+  --accent-soft: #7f74ea;
+  --accent-glow: rgba(106, 83, 224, 0.28);
+  --danger: #a23e52;
+  --glass-highlight: rgba(255, 255, 255, 0.42);
+  --neural-rgb: 106, 83, 224;
+  --shadow-glass: 0 1px 1px rgba(255, 255, 255, 0.7) inset,
+    0 10px 30px -18px rgba(28, 24, 60, 0.18);
+  --ring: rgba(106, 83, 224, 0.45);
+  --hero-veil: rgba(244, 244, 247, 0.18);
+
+  /* Re-point Tailwind's theme colors at the landing palette. */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-border: var(--border);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Was `html`/`body` in the standalone app; the wrapper carries it here so
+     the workspace's own document-level styling stays untouched. */
+  min-height: 100%;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  overflow-x: hidden;
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+.dark .landing-scope {
+  --background: #08090d;
+  --background-deep: #05060a;
+  --foreground: #f2f3f7;
+  --muted: #9aa1b4;
+  --surface: #11131a;
+  --surface-glass: rgba(14, 16, 24, 0.52);
+  --surface-glass-strong: rgba(18, 20, 30, 0.72);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(139, 124, 255, 0.2);
+  --accent: #8b7cff;
+  --accent-deep: #6e5ef0;
+  --accent-soft: #a89aff;
+  --accent-glow: rgba(139, 124, 255, 0.32);
+  --danger: #ff9aaa;
+  --glass-highlight: rgba(180, 170, 255, 0.12);
+  --neural-rgb: 139, 124, 255;
+  --shadow-glass: 0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 18px 40px -24px rgba(0, 0, 0, 0.7);
+  --ring: rgba(139, 124, 255, 0.5);
+  --hero-veil: rgba(8, 9, 13, 0.12);
+  color-scheme: dark;
+}
+
+.landing-scope ::selection {
+  background: color-mix(in srgb, var(--accent) 28%, transparent);
+  color: var(--foreground);
+}
+
+.landing-scope:focus-visible,
+.landing-scope :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.landing-scope .skip-link {
+  position: absolute;
+  left: 12px;
+  top: -40px;
+  z-index: 100;
+  border-radius: 10px;
+  background: var(--surface);
+  padding: 8px 12px;
+  color: var(--foreground);
+  font-size: 13px;
+}
+
+.landing-scope .skip-link:focus {
+  top: 12px;
+}
+
+.landing-scope .container-page {
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+@media (min-width: 640px) {
+  .landing-scope .container-page {
+    padding-inline: 32px;
+  }
+}
+
+.landing-scope .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.landing-scope .glass {
+  background: var(--surface-glass);
+  backdrop-filter: blur(18px) saturate(1.15);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-glass);
+}
+
+.landing-scope .glass-strong {
+  background: var(--surface-glass-strong);
+  backdrop-filter: blur(22px) saturate(1.2);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-glass);
+}
+
+.landing-scope .glass-interactive {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(
+      160px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      var(--glass-highlight),
+      transparent 58%
+    ),
+    var(--surface-glass);
+  backdrop-filter: blur(18px) saturate(1.15);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-glass);
+}
+
+.landing-scope .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 550;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  transition:
+    transform 180ms ease,
+    box-shadow 220ms ease,
+    background 220ms ease,
+    border-color 220ms ease,
+    color 180ms ease;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.landing-scope .btn:active {
+  transform: scale(0.98);
+}
+
+.landing-scope .btn:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.landing-scope .btn-primary {
+  color: #fff;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0) 42%),
+    linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.22) inset,
+    0 10px 22px -12px var(--accent-glow);
+}
+
+.landing-scope .btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.28) inset,
+    0 14px 28px -12px var(--accent-glow);
+}
+
+.landing-scope .btn-primary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.landing-scope .btn-secondary {
+  color: var(--foreground);
+  background: var(--surface-glass);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-glass);
+}
+
+.landing-scope .btn-secondary:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+}
+
+.landing-scope .btn-tertiary {
+  min-height: auto;
+  padding: 0;
+  color: var(--accent);
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.landing-scope .btn-tertiary:hover {
+  color: var(--accent-soft);
+}
+
+.landing-scope .reveal-pending {
+  opacity: 0;
+  transform: translateY(14px);
+  filter: blur(4px);
+}
+
+.landing-scope .reveal {
+  animation: reveal-in 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+@keyframes reveal-in {
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+.landing-scope .onboarding-step {
+  animation: onboarding-step-in 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes onboarding-step-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.995);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.landing-scope .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition:
+    background 280ms ease,
+    border-color 280ms ease,
+    backdrop-filter 280ms ease;
+}
+
+.landing-scope .navbar-inner {
+  background: color-mix(in srgb, var(--background) 42%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid transparent;
+}
+
+.landing-scope .navbar.is-scrolled .navbar-inner {
+  background: var(--surface-glass-strong);
+  backdrop-filter: blur(18px) saturate(1.15);
+  border-bottom-color: var(--border);
+}
+
+.landing-scope .theme-switch {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 64px;
+  height: 32px;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--surface-glass);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-glass);
+}
+
+.landing-scope .theme-switch-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow: 0 1px 4px rgba(12, 10, 30, 0.16);
+  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dark .landing-scope .theme-switch-thumb {
+  transform: translateX(32px);
+}
+
+.landing-scope .core-orbit {
+  animation: orbit-spin 28s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.landing-scope .link-path {
+  stroke: color-mix(in srgb, var(--accent) 38%, transparent);
+  transition: stroke 280ms ease, stroke-opacity 280ms ease, filter 280ms ease;
+}
+
+.landing-scope .link-path.is-active {
+  stroke: var(--accent);
+  filter: drop-shadow(0 0 6px var(--accent-glow));
+}
+
+.landing-scope .link-path.is-dim {
+  stroke-opacity: 0.28;
+}
+
+.landing-scope .process-line {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--accent) 55%, transparent),
+    transparent
+  );
+}
+
+.landing-scope .metric-value {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.04em;
+}
+
+.landing-scope .product-frame {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 28%),
+    var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-glass);
+}
+
+.dark .landing-scope .product-frame {
+  background:
+    linear-gradient(180deg, rgba(139, 124, 255, 0.06), transparent 30%),
+    var(--surface);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-scope {
+    scroll-behavior: auto;
+  }
+
+  .landing-scope .neural-field,
+  .landing-scope .core-orbit {
+    animation: none !important;
+  }
+
+  .landing-scope .reveal-pending,
+  .landing-scope .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+  }
+}

@@ -1,0 +1,101 @@
+product_id,product_name,category,unit_price_bdt,weight_g,length_cm,height_cm,width_cm
+P0001,Cotton Panjabi,fashion_apparel,1257.30,2403,41,17,13
+P0002,Premium Hoodie,fashion_accessories,1185.30,862,64,5,6
+P0003,Denim Jacket,fashion_apparel,2131.90,4289,13,38,17
+P0004,Everyday Backpack,fashion_accessories,5646.60,3586,38,31,42
+P0005,Wireless Earbuds,electronics_accessories,6946.90,203,30,47,32
+P0006,Smart Watch,electronics_accessories,2614.70,1913,53,9,10
+P0007,Kitchen Organizer,home_kitchen,1138.20,2967,43,5,51
+P0008,Desk Lamp,home_decor,4720.30,3250,20,38,23
+P0009,Running Shoes,footwear,5390.90,3112,34,48,9
+P0010,Yoga Mat,health_beauty,5739.30,2520,20,17,60
+P0011,Coffee Maker,home_kitchen,3448.00,3864,56,13,28
+P0012,Phone Case,electronics_accessories,2057.50,2337,19,41,45
+P0013,Bluetooth Speaker,electronics_accessories,4703.20,2155,30,32,29
+P0014,Office Chair,home_furniture,8414.60,1949,51,6,19
+P0015,Travel Mug,home_kitchen,6911.10,3436,44,7,18
+P0016,LED Strip Light,home_decor,7492.40,2727,37,44,36
+P0017,Hair Dryer,health_beauty,7560.20,3908,28,19,13
+P0018,Makeup Kit,health_beauty,6421.70,2302,64,40,30
+P0019,Garden Tool Set,garden_outdoor,2137.50,1283,75,34,10
+P0020,Kids Building Set,toys_games,7368.00,1402,30,46,32
+P0021,Cotton Panjabi 2,fashion_apparel,867.80,3276,69,36,21
+P0022,Premium Hoodie 2,fashion_accessories,7365.40,244,24,46,39
+P0023,Denim Jacket 2,fashion_apparel,6614.10,2936,24,21,32
+P0024,Everyday Backpack 2,fashion_accessories,4047.80,2307,74,14,37
+P0025,Wireless Earbuds 2,electronics_accessories,7444.70,2594,74,41,17
+P0026,Smart Watch 2,electronics_accessories,3397.40,1473,79,36,5
+P0027,Kitchen Organizer 2,home_kitchen,2991.90,309,24,26,58
+P0028,Desk Lamp 2,home_decor,2301.50,2123,20,8,51
+P0029,Running Shoes 2,footwear,7000.60,1180,26,45,35
+P0030,Yoga Mat 2,health_beauty,1695.80,4472,64,16,39
+P0031,Coffee Maker 2,home_kitchen,5972.40,2703,61,45,46
+P0032,Phone Case 2,electronics_accessories,3920.50,4389,67,10,20
+P0033,Bluetooth Speaker 2,electronics_accessories,871.80,322,80,17,42
+P0034,Office Chair 2,home_furniture,408.60,632,39,7,7
+P0035,Travel Mug 2,home_kitchen,927.50,2099,45,45,36
+P0036,LED Strip Light 2,home_decor,4744.80,4022,41,33,56
+P0037,Hair Dryer 2,health_beauty,1901.80,944,65,25,32
+P0038,Makeup Kit 2,health_beauty,4156.30,593,22,6,30
+P0039,Garden Tool Set 2,garden_outdoor,3115.30,1045,41,15,17
+P0040,Kids Building Set 2,toys_games,4006.20,3606,33,20,34
+P0041,Cotton Panjabi 3,fashion_apparel,7477.10,767,66,38,11
+P0042,Premium Hoodie 3,fashion_accessories,5665.00,270,21,18,15
+P0043,Denim Jacket 3,fashion_apparel,4308.00,1901,61,6,15
+P0044,Everyday Backpack 3,fashion_accessories,367.60,3348,43,32,23
+P0045,Wireless Earbuds 3,electronics_accessories,6027.20,4136,29,15,23
+P0046,Smart Watch 3,electronics_accessories,8245.00,649,50,6,8
+P0047,Kitchen Organizer 3,home_kitchen,4235.80,4500,30,6,37
+P0048,Desk Lamp 3,home_decor,7288.40,711,18,46,60
+P0049,Running Shoes 3,footwear,3640.80,2166,15,42,10
+P0050,Yoga Mat 3,health_beauty,5707.60,4432,50,19,18
+P0051,Coffee Maker 3,home_kitchen,6187.00,2105,43,28,13
+P0052,Phone Case 3,electronics_accessories,5610.80,3895,50,7,5
+P0053,Bluetooth Speaker 3,electronics_accessories,5412.40,969,19,37,18
+P0054,Office Chair 3,home_furniture,2511.40,3009,18,18,28
+P0055,Travel Mug 3,home_kitchen,1635.60,2628,77,3,47
+P0056,LED Strip Light 3,home_decor,2789.90,998,27,19,12
+P0057,Hair Dryer 3,health_beauty,6400.70,1423,44,21,43
+P0058,Makeup Kit 3,health_beauty,6198.50,1817,43,35,36
+P0059,Garden Tool Set 3,garden_outdoor,7728.50,566,21,43,32
+P0060,Kids Building Set 3,toys_games,709.30,2882,26,43,21
+P0061,Cotton Panjabi 4,fashion_apparel,6391.00,3653,11,10,9
+P0062,Premium Hoodie 4,fashion_accessories,7717.00,445,57,40,40
+P0063,Denim Jacket 4,fashion_apparel,3852.80,492,49,26,55
+P0064,Everyday Backpack 4,fashion_accessories,7676.20,1870,41,45,11
+P0065,Wireless Earbuds 4,electronics_accessories,6707.90,3479,29,18,60
+P0066,Smart Watch 4,electronics_accessories,8306.10,1600,62,4,16
+P0067,Kitchen Organizer 4,home_kitchen,7884.60,3522,41,20,15
+P0068,Desk Lamp 4,home_decor,1231.00,467,70,17,17
+P0069,Running Shoes 4,footwear,3199.70,2014,38,4,47
+P0070,Yoga Mat 4,health_beauty,3597.50,2432,18,20,27
+P0071,Coffee Maker 4,home_kitchen,4501.70,2862,13,10,21
+P0072,Phone Case 4,electronics_accessories,5081.80,2324,14,9,43
+P0073,Bluetooth Speaker 4,electronics_accessories,3167.30,2719,65,41,37
+P0074,Office Chair 4,home_furniture,3489.30,1707,42,5,50
+P0075,Travel Mug 4,home_kitchen,363.80,1764,56,30,9
+P0076,LED Strip Light 4,home_decor,7854.30,2721,25,49,24
+P0077,Hair Dryer 4,health_beauty,2870.70,3495,51,28,49
+P0078,Makeup Kit 4,health_beauty,4868.50,1721,63,45,29
+P0079,Garden Tool Set 4,garden_outdoor,6447.30,1575,48,28,40
+P0080,Kids Building Set 4,toys_games,2826.60,1871,65,40,43
+P0081,Cotton Panjabi 5,fashion_apparel,2976.30,3769,66,46,18
+P0082,Premium Hoodie 5,fashion_accessories,4206.50,1540,20,21,37
+P0083,Denim Jacket 5,fashion_apparel,5508.50,2895,21,18,48
+P0084,Everyday Backpack 5,fashion_accessories,2180.80,1781,28,4,7
+P0085,Wireless Earbuds 5,electronics_accessories,8369.10,746,68,29,45
+P0086,Smart Watch 5,electronics_accessories,1934.60,3295,73,28,20
+P0087,Kitchen Organizer 5,home_kitchen,5696.90,195,23,30,19
+P0088,Desk Lamp 5,home_decor,6903.50,4393,69,6,40
+P0089,Running Shoes 5,footwear,7827.40,1144,68,11,56
+P0090,Yoga Mat 5,health_beauty,5790.80,2749,66,42,57
+P0091,Coffee Maker 5,home_kitchen,7620.00,3645,80,31,15
+P0092,Phone Case 5,electronics_accessories,7371.20,3836,43,18,58
+P0093,Bluetooth Speaker 5,electronics_accessories,2610.10,4420,72,43,20
+P0094,Office Chair 5,home_furniture,3935.00,2490,40,20,26
+P0095,Travel Mug 5,home_kitchen,7628.20,810,27,12,19
+P0096,LED Strip Light 5,home_decor,6005.70,1902,18,29,31
+P0097,Hair Dryer 5,health_beauty,4772.30,3556,17,16,58
+P0098,Makeup Kit 5,health_beauty,3524.20,310,58,33,5
+P0099,Garden Tool Set 5,garden_outdoor,2783.70,3344,63,37,52
+P0100,Kids Building Set 5,toys_games,4801.00,1956,72,17,22

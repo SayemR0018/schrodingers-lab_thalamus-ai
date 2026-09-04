@@ -1,0 +1,17 @@
+goals:
+  primary:
+    - id: G1
+      name: "Revenue Growth"
+      metric: "monthly_revenue"
+    - id: G2
+      name: "Customer Satisfaction"
+      metric: "average_review_score"
+    - id: G3
+      name: "Inventory Health"
+      metric: "stockout_risk_count"
+    - id: G4
+      name: "Delivery Performance"
+      metric: "late_delivery_rate"
+    - id: G5
+      name: "Operating Efficiency"
+      metric: "freight_cost_ratio"

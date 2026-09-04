@@ -1,0 +1,33 @@
+agent:
+  id: "inventory_agent"
+  name: "Inventory Agent"
+  status: "active"
+  purpose: "Monitor stock health and identify products at risk of stockout."
+
+  data_sources:
+    - inventory
+    - products
+    - order_items
+    - suppliers
+
+  capabilities:
+    - stockout_risk
+    - demand_velocity
+    - reorder_point_check
+    - reorder_recommendation
+
+  synthetic_data_note:
+    inventory_and_supplier_tables_are_synthetic_demo_layers: true
+
+  example_questions:
+    - "Which products are at risk of stockout?"
+    - "What should we reorder?"
+    - "Which products have unusually high demand?"
+
+  output:
+    required:
+      - product
+      - risk
+      - evidence
+      - recommended_quantity
+      - approval_required

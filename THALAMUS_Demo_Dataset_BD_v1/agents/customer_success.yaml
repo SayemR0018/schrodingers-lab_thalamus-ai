@@ -1,0 +1,32 @@
+agent:
+  id: "customer_success"
+  name: "Customer Success"
+  status: "active"
+  purpose: "Analyze customer satisfaction, reviews, delivery issues, and retention signals."
+
+  data_sources:
+    - customers
+    - orders
+    - reviews
+    - order_items
+    - products
+
+  capabilities:
+    - satisfaction_analysis
+    - delivery_issue_analysis
+    - review_trend_analysis
+    - repeat_customer_analysis
+    - affected_customer_detection
+
+  example_questions:
+    - "Why are customers unhappy?"
+    - "Are late deliveries affecting ratings?"
+    - "Which products receive poor reviews?"
+
+  output:
+    required:
+      - finding
+      - affected_segment
+      - evidence
+      - confidence
+      - recommendation

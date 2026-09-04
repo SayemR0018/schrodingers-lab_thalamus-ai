@@ -1,0 +1,31 @@
+{
+  "dataset_version": "1.0.0",
+  "synthetic": true,
+  "source_schema_inspiration": "THALAMUS Bangladesh Localized Demo Dataset",
+  "localization": {
+    "market": "Bangladesh",
+    "currency": "BDT",
+    "language_primary": "Bangla (bn)",
+    "language_secondary": "English (en)",
+    "timezone": "Asia/Dhaka"
+  },
+  "tables": {
+    "customers.csv": 1000,
+    "products.csv": 100,
+    "sellers.csv": 40,
+    "suppliers.csv": 12,
+    "inventory.csv": 100,
+    "orders.csv": 5000,
+    "order_items.csv": 6774,
+    "payments.csv": 5000,
+    "reviews.csv": 3450
+  },
+  "agents": [
+    "sales_analyst",
+    "marketing_agent",
+    "inventory_agent",
+    "customer_success",
+    "finance_agent",
+    "automation_agent"
+  ]
+}

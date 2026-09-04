@@ -1,0 +1,13 @@
+supplier_id,supplier_name,lead_time_days,reliability_score
+SUP001,Dhaka Wholesale Co.,15,0.95
+SUP002,Chittagong Trade House,16,0.98
+SUP003,Sylhet Suppliers Ltd.,18,0.9
+SUP004,Khulna Distribution,10,0.88
+SUP005,Rajshahi Mart,5,0.86
+SUP006,Barisal Goods Supply,4,0.89
+SUP007,Rangpur Wholesale,7,0.81
+SUP008,Comilla Trade Center,17,0.82
+SUP009,Narayanganj Suppliers,8,0.98
+SUP010,Gazipur Distribution,9,0.81
+SUP011,Mymensingh Mart,16,0.8
+SUP012,Bogura Wholesale,16,0.82

@@ -1,0 +1,22 @@
+policies:
+  discount:
+    maximum_percent_without_approval: 20
+
+  refunds:
+    maximum_bdt_without_approval: 500
+
+  inventory:
+    restock_recommendation_requires_approval: true
+    purchase_order_requires_approval: true
+
+  customer_communication:
+    draft_allowed_automatically: true
+    send_requires_approval: true
+
+  finance:
+    high_value_action_threshold_bdt: 5000
+    high_value_action_requires_approval: true
+
+  automation:
+    enabled: true
+    destructive_actions_require_approval: true

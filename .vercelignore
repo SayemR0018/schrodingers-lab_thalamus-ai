@@ -1,0 +1,39 @@
+# Files excluded from the deployment upload. Build output and node_modules
+# are always ignored by Vercel; everything here is local-only noise or
+# reference material that the running app never reads.
+
+# Local env files — real values live in Vercel's Environment Variables UI.
+.env
+.env*.local
+
+# Dependencies & build artifacts
+node_modules
+.next
+out
+build
+
+# TypeScript incremental cache
+*.tsbuildinfo
+
+# Local tooling / editor state
+.puku-cli
+.vscode
+.idea
+.cursor
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Reference dataset. Documented in the README and used to author
+# `src/data/demo/*`, but nothing imports it at build or request time — the
+# demo facts are generated in TypeScript. Excluded to keep uploads small.
+THALAMUS_Demo_Dataset_BD_v1/
+
+# Verification script — run locally with `npm run verify:openai`; it is not
+# part of the build or runtime.
+scripts/

@@ -1,0 +1,21 @@
+business:
+  name: "Prothom Mart"
+  industry: "E-commerce"
+  business_model: "Online retail marketplace"
+  market: "Bangladesh"
+  currency: "BDT"
+  timezone: "Asia/Dhaka"
+  description: "Synthetic demo business created for the THALAMUS AI prototype, localized for Bangladesh."
+
+  goals:
+    - "Increase revenue"
+    - "Improve customer satisfaction"
+    - "Reduce delivery problems"
+    - "Avoid stockouts"
+    - "Control operating costs"
+
+  data_note:
+    operational_schema_inspired_by: "Olist Brazilian E-Commerce Public Dataset"
+    synthetic_demo_data: true
+    source_data_is_not_embedded: true
+    localized_for: "Bangladesh"

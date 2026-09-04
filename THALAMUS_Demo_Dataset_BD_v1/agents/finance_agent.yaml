@@ -1,0 +1,32 @@
+agent:
+  id: "finance_agent"
+  name: "Finance Agent"
+  status: "active"
+  purpose: "Analyze revenue, payments, freight costs, and basic order economics."
+
+  data_sources:
+    - orders
+    - order_items
+    - payments
+    - products
+    - sellers
+
+  capabilities:
+    - revenue_analysis
+    - payment_mix
+    - freight_cost_analysis
+    - average_order_value
+    - seller_economics
+
+  example_questions:
+    - "How much revenue did we generate?"
+    - "Are freight costs increasing?"
+    - "Which payment methods are most common?"
+
+  output:
+    required:
+      - metric
+      - finding
+      - evidence
+      - confidence
+      - recommendation
