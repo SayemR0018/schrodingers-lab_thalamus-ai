@@ -226,14 +226,14 @@ OPENAI_API_KEY=sk-proj-...
 # ---- Model tiering ---------------------------------------------------------
 # Each tier automatically falls back to a GA model if the configured one is
 # unavailable: gpt-5.6-luna -> gpt-4o-mini, gpt-5.6-terra -> gpt-4o.
-OPENAI_MODEL_DEFAULT=gpt-5.6-luna       # Chat completions & fast extraction
-OPENAI_MODEL_DEEP=gpt-5.6-terra         # Deep cross-domain reports & audits
-OPENAI_MODEL_STRUCT=gpt-5.6-luna        # Structured JSON extraction
+OPENAI_MODEL_DEFAULT=gpt-5.6-luna
+OPENAI_MODEL_DEEP=gpt-5.6-terra
+OPENAI_MODEL_STRUCT=gpt-5.6-luna
 
 # ---- Runtime parameters ----------------------------------------------------
-OPENAI_MAX_TOKENS_CHAT=800
-OPENAI_MAX_TOKENS_REPORT=2000
-OPENAI_TEMPERATURE=1
+# Mapped to `max_completion_tokens` in API payloads. Do not send `temperature`.
+OPENAI_MAX_COMPLETION_TOKENS_CHAT=800
+OPENAI_MAX_COMPLETION_TOKENS_REPORT=2000
 OPENAI_TIMEOUT_MS=30000
 OPENAI_RATE_LIMIT_PER_MIN=30
 
@@ -251,9 +251,8 @@ NEXT_PUBLIC_PRODUCT_APP_URL=
 | `OPENAI_MODEL_DEFAULT` | No | `gpt-5.6-luna` → `gpt-4o-mini` | Fast tier: streaming chat, extraction, suggestions |
 | `OPENAI_MODEL_DEEP` | No | `gpt-5.6-terra` → `gpt-4o` | Deep tier: reports, finance, policy audits |
 | `OPENAI_MODEL_STRUCT` | No | `gpt-5.6-luna` | Structured JSON extraction (schema-constrained) |
-| `OPENAI_MAX_TOKENS_CHAT` | No | `800` | Output cap for conversational replies |
-| `OPENAI_MAX_TOKENS_REPORT` | No | `2000` | Output cap for generated reports |
-| `OPENAI_TEMPERATURE` | No | `1` (default only) | GPT-5.6 rejects custom values — omit from API payloads; env kept for documentation |
+| `OPENAI_MAX_COMPLETION_TOKENS_CHAT` | No | `800` | Output cap for conversational replies (`max_completion_tokens`) |
+| `OPENAI_MAX_COMPLETION_TOKENS_REPORT` | No | `2000` | Output cap for generated reports (`max_completion_tokens`) |
 | `OPENAI_TIMEOUT_MS` | No | `30000` | Upstream request timeout |
 | `OPENAI_RATE_LIMIT_PER_MIN` | No | `30` | Per-IP request ceiling |
 | `NEXT_PUBLIC_PRODUCT_APP_URL` | No | `""` (relative) | Product origin for split-domain deployments |
