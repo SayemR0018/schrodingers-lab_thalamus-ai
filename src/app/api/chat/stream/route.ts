@@ -3,9 +3,10 @@
  *
  * Streams a THALAMUS AI completion via Server-Sent Events.
  *
- * Body:
+ * Body (frontend `chat.service.ts` and ad-hoc probes):
  *   {
- *     message: string,
+ *     userMessage?: string,
+ *     message?: string,
  *     selectedAgentId?: string,
  *     language?: "en" | "bn"
  *   }
@@ -23,11 +24,29 @@ import { buildBusinessContext } from "@/lib/openai/context/buildBusinessContext"
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+const SSE_HEADERS = {
+  "Content-Type": "text/event-stream; charset=utf-8",
+  "Cache-Control": "no-cache, no-transform",
+  Connection: "keep-alive",
+  "X-Accel-Buffering": "no",
+} as const;
+
 export async function POST(req: NextRequest) {
   try {
-    const { message, selectedAgentId, language = "en" } = await req.json();
+    const body = (await req.json().catch(() => ({}))) as {
+      message?: string;
+      userMessage?: string;
+      selectedAgentId?: string | null;
+      language?: "en" | "bn";
+      context?: { selectedAgentId?: string | null; language?: "en" | "bn" };
+    };
 
-    if (!message?.trim()) {
+    const message = String(body.userMessage ?? body.message ?? "").trim();
+    const selectedAgentId =
+      body.selectedAgentId ?? body.context?.selectedAgentId ?? undefined;
+    const language = body.language ?? body.context?.language ?? "en";
+
+    if (!message) {
       return new Response(sseError("bad_request", "Query is required"), {
         status: 400,
         headers: { "Content-Type": "text/event-stream; charset=utf-8" },
@@ -133,14 +152,7 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    return new Response(stream, {
-      headers: {
-        "Content-Type": "text/event-stream; charset=utf-8",
-        "Cache-Control": "no-cache, no-transform",
-        Connection: "keep-alive",
-        "X-Accel-Buffering": "no",
-      },
-    });
+    return new Response(stream, { headers: SSE_HEADERS });
   } catch (error: unknown) {
     return new Response(
       sseError(

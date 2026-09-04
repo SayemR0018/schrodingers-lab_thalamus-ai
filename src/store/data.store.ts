@@ -472,8 +472,3 @@ export const useDataStore = create<DataState>()(
     }
   )
 );
-
-// Rehydrate on client side
-if (typeof window !== "undefined") {
-  useDataStore.persist.rehydrate();
-}

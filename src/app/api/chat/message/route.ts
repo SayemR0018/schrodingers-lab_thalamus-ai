@@ -35,6 +35,7 @@ export async function POST(req: NextRequest) {
   let body: {
     conversationId?: string;
     userMessage?: string;
+    message?: string;
     context?: unknown;
     selectedAgentId?: string | null;
     selectedEntityId?: string | null;
@@ -50,7 +51,7 @@ export async function POST(req: NextRequest) {
     });
   }
 
-  const userMessage = (body.userMessage ?? "").trim();
+  const userMessage = (body.userMessage ?? body.message ?? "").trim();
   if (!userMessage) {
     return new Response(JSON.stringify({ error: "bad_request" }), {
       status: 400,

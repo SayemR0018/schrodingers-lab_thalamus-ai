@@ -213,8 +213,3 @@ export const useAppStore = create<AppState>()(
     }
   )
 );
-
-// Rehydrate on client side
-if (typeof window !== "undefined") {
-  useAppStore.persist.rehydrate();
-}

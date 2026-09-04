@@ -55,12 +55,7 @@ export function t(
   values?: InterpolationValues,
   lang?: Language
 ): string {
-  const activeLang: Language =
-    lang ??
-    (typeof window !== "undefined"
-      ? (useAppStore.getState().language as Language | undefined)
-      : undefined) ??
-    "en";
+  const activeLang: Language = lang ?? useAppStore.getState().language ?? "en";
 
   const primary = getNestedValue(dictionaries[activeLang], key);
   if (typeof primary === "string") {

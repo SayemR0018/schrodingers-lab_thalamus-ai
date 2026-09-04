@@ -130,7 +130,3 @@ export const useConversationStore = create<ConversationStoreState>()(
     }
   )
 );
-
-if (typeof window !== "undefined") {
-  useConversationStore.persist.rehydrate();
-}

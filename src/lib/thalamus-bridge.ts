@@ -19,6 +19,7 @@
  */
 
 import { useEffect } from "react";
+import { rehydrateClientStores } from "@/components/system/StoreRehydrator";
 import { useUserStore } from "@/store/user.store";
 import { useDataStore } from "@/store/data.store";
 import { useAppStore } from "@/store/app.store";
@@ -211,6 +212,7 @@ function projectOnboardingToProduct(): void {
  */
 export function ThalamusBridge(): null {
   useEffect(() => {
+    rehydrateClientStores();
     // Initial projection, including the `business-info` records.
     projectOnboardingToProduct();
 

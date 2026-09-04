@@ -433,7 +433,10 @@ export default function WorkspaceOverviewPage() {
                           </>
                         )}
                       </p>
-                      <p className="mt-0.5 text-xs text-foreground-subtle">
+                      <p
+                        suppressHydrationWarning
+                        className="mt-0.5 text-xs text-foreground-subtle"
+                      >
                         {formatRelative(item.isoDate, language)}
                       </p>
                     </div>

@@ -282,8 +282,3 @@ export const useUserStore = create<UserState>()(
     }
   )
 );
-
-// Rehydrate on client side
-if (typeof window !== "undefined") {
-  useUserStore.persist.rehydrate();
-}

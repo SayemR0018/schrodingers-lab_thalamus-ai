@@ -120,8 +120,14 @@ export const chatService: ChatService = {
       }),
     });
     if (!res.ok) {
-      const err = await res.json().catch(() => ({}));
-      throw new Error(err.message ?? `agent invoke failed (${res.status})`);
+      const err = (await res.json().catch(() => ({}))) as {
+        message?: string;
+        detail?: string;
+        error?: string;
+      };
+      throw new Error(
+        err.detail ?? err.message ?? err.error ?? `agent invoke failed (${res.status})`
+      );
     }
     return (await res.json()) as {
       agentId: string;

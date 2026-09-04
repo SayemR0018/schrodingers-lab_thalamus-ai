@@ -25,9 +25,22 @@ export async function POST(
 ) {
   try {
     const { id } = await params;
-    const body = await req.json().catch(() => ({}));
+    const body = (await req.json().catch(() => ({}))) as {
+      task?: string;
+      query?: string;
+      userMessage?: string;
+      message?: string;
+      language?: "en" | "bn";
+      isReport?: boolean;
+    };
     const agentId = normalizeAgentId(id);
-    const task = body.task || body.query || "Run scheduled diagnostic review";
+    const task = String(
+      body.task ||
+        body.query ||
+        body.userMessage ||
+        body.message ||
+        "Run scheduled diagnostic review"
+    ).trim();
     const language = body.language || "en";
 
     const result = await runThalamusInference({
@@ -37,7 +50,12 @@ export async function POST(
       isReport: body.isReport || false,
     });
 
-    return NextResponse.json(result);
+    return NextResponse.json({
+      ...result,
+      agentId,
+      note: result.finding,
+      messageId: `msg-${agentId}-${Date.now()}`,
+    });
   } catch (error: unknown) {
     if (error instanceof ThalamusInferenceError) {
       console.warn(
