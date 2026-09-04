@@ -18,6 +18,66 @@ import OpenAI from "openai";
 let cachedClient: OpenAI | null = null;
 
 /**
+ * GPT-5.6 chat completions reject the legacy token cap and any temperature
+ * other than the API default. Rewrite the JSON body so neither field can
+ * leak through the SDK, a helper, or a future caller.
+ */
+function rewriteChatCompletionJson(raw: string): string {
+  let payload: Record<string, unknown>;
+  try {
+    payload = JSON.parse(raw) as Record<string, unknown>;
+  } catch {
+    return raw;
+  }
+  if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+    return raw;
+  }
+
+  let changed = false;
+
+  if (Object.prototype.hasOwnProperty.call(payload, "max_tokens")) {
+    if (
+      payload.max_completion_tokens == null &&
+      typeof payload.max_tokens === "number"
+    ) {
+      payload.max_completion_tokens = payload.max_tokens;
+    }
+    delete payload.max_tokens;
+    changed = true;
+  }
+
+  if (Object.prototype.hasOwnProperty.call(payload, "temperature")) {
+    delete payload.temperature;
+    changed = true;
+  }
+
+  return changed ? JSON.stringify(payload) : raw;
+}
+
+function requestUrl(input: string | URL | Request): string {
+  if (typeof input === "string") return input;
+  if (input instanceof URL) return input.href;
+  return input.url;
+}
+
+function gpt56SafeFetch(
+  input: string | URL | Request,
+  init?: RequestInit
+): Promise<Response> {
+  if (!requestUrl(input).includes("/chat/completions")) {
+    return fetch(input, init);
+  }
+  if (typeof init?.body !== "string") {
+    return fetch(input, init);
+  }
+  const body = rewriteChatCompletionJson(init.body);
+  if (body === init.body) {
+    return fetch(input, init);
+  }
+  return fetch(input, { ...init, body });
+}
+
+/**
  * Primary accessor — returns a memoised OpenAI client.
  * Throws lazily when the API key is missing so route handlers can decide
  * how to fall back instead of failing on import.
@@ -34,6 +94,7 @@ export function getOpenAIClient(): OpenAI {
     apiKey,
     timeout: Number(process.env.OPENAI_TIMEOUT_MS ?? 30000),
     maxRetries: 2,
+    fetch: gpt56SafeFetch,
   });
 
   return cachedClient;
@@ -61,8 +122,18 @@ export const openai: () => OpenAI = getOpenAIClient;
 export const MODELS = OPENAI_MODELS;
 
 export const LIMITS = {
-  chat: () => Number(process.env.OPENAI_MAX_TOKENS_CHAT ?? 600),
-  report: () => Number(process.env.OPENAI_MAX_TOKENS_REPORT ?? 1500),
+  chat: () =>
+    Number(
+      process.env.OPENAI_MAX_COMPLETION_TOKENS_CHAT ??
+        process.env.OPENAI_MAX_TOKENS_CHAT ??
+        600
+    ),
+  report: () =>
+    Number(
+      process.env.OPENAI_MAX_COMPLETION_TOKENS_REPORT ??
+        process.env.OPENAI_MAX_TOKENS_REPORT ??
+        1500
+    ),
 };
 
 /**

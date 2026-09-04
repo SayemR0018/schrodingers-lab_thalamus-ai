@@ -73,6 +73,10 @@ function parseEnvFile(filePath) {
       (value.startsWith("'") && value.endsWith("'"))
     ) {
       value = value.slice(1, -1);
+    } else {
+      // Unquoted inline comments must not become part of the model name.
+      const commentIdx = value.search(/\s+#/);
+      if (commentIdx >= 0) value = value.slice(0, commentIdx).trim();
     }
     env[key] = value;
   }
@@ -186,6 +190,44 @@ async function main() {
     apiKey: key,
     timeout: 30_000,
     maxRetries: 0,
+    fetch: (input, init) => {
+      const url =
+        typeof input === "string"
+          ? input
+          : input instanceof URL
+            ? input.href
+            : input.url;
+      if (
+        url.includes("/chat/completions") &&
+        init &&
+        typeof init.body === "string"
+      ) {
+        try {
+          const payload = JSON.parse(init.body);
+          let changed = false;
+          if (Object.prototype.hasOwnProperty.call(payload, "max_tokens")) {
+            if (
+              payload.max_completion_tokens == null &&
+              typeof payload.max_tokens === "number"
+            ) {
+              payload.max_completion_tokens = payload.max_tokens;
+            }
+            delete payload.max_tokens;
+            changed = true;
+          }
+          if (Object.prototype.hasOwnProperty.call(payload, "temperature")) {
+            delete payload.temperature;
+            changed = true;
+          }
+          if (changed) {
+            return fetch(input, { ...init, body: JSON.stringify(payload) });
+          }
+        } catch {
+          // Fall through to the original body if it is not JSON.
+        }
+      }
+      return fetch(input, init);
+    },
   });
 
   // Helper that runs a tiny completion against a target model and
@@ -217,10 +259,13 @@ async function main() {
     }
     const unavailable =
       probe.status === 404 ||
-      probe.status === 400 ||
       probe.status === 403 ||
       probe.code === "model_not_found" ||
-      probe.code === "unsupported_model";
+      probe.code === "unsupported_model" ||
+      probe.code === "model_invalid" ||
+      /does not exist|not have access|model_not_found/i.test(
+        probe.message || ""
+      );
     if (unavailable) {
       warn(
         `${modelName} unavailable on this account (status=${probe.status}, code=${probe.code}).`

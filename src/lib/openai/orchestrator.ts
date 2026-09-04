@@ -10,7 +10,7 @@
  * The orchestrator yields SSE chunks via the AsyncGenerator API.
  */
 import OpenAI from "openai";
-import { openai, MODELS, LIMITS } from "./client";
+import { openai, MODELS, LIMITS, completionBudget } from "./client";
 import { withModelFallback } from "./engine";
 import {
   THALAMUS_PLANNER_INSTRUCTIONS,
@@ -200,7 +200,7 @@ export async function planRouting(input: OrchestratorInput): Promise<{
           },
         },
       },
-      max_completion_tokens: 200,
+      ...completionBudget({ maxCompletionTokens: 200 }),
     });
 
     const raw = completion.choices?.[0]?.message?.content;
@@ -257,7 +257,7 @@ export async function runAgent(
           `Keep your note under ~250 words.`,
       },
     ],
-    max_completion_tokens: LIMITS.chat(),
+    ...completionBudget({ maxCompletionTokens: LIMITS.chat() }),
   });
 
   return completion.choices?.[0]?.message?.content ?? "";
@@ -305,7 +305,7 @@ export function synthesizeStream(
       { role: "system", content: systemPrompt },
       { role: "user", content: userPrompt },
     ],
-    max_completion_tokens: LIMITS.chat(),
+    ...completionBudget({ maxCompletionTokens: LIMITS.chat() }),
     stream: true,
   }).then(
     ({ result, didFallback, usedModel, requestedModel }) => ({

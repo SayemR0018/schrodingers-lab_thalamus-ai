@@ -10,7 +10,7 @@
  */
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { openai, MODELS } from "@/lib/openai/client";
+import { openai, MODELS, completionBudget } from "@/lib/openai/client";
 import { withModelFallback } from "@/lib/openai/engine";
 import { DETECTION_INSTRUCTIONS, DETECTION_JSON_SCHEMA } from "@/lib/openai/prompts/detection.system";
 import { rateLimit, getClientIp } from "@/lib/openai/safety";
@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
               schema: DETECTION_JSON_SCHEMA,
             },
           },
-          max_completion_tokens: 200,
+          ...completionBudget({ maxCompletionTokens: 200 }),
         })
     );
 

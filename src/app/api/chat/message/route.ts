@@ -11,7 +11,7 @@ import {
   runAgent,
   type AgentId,
 } from "@/lib/openai/orchestrator";
-import { openai, MODELS, LIMITS } from "@/lib/openai/client";
+import { openai, MODELS, LIMITS, completionBudget } from "@/lib/openai/client";
 import { withModelFallback } from "@/lib/openai/engine";
 import {
   THALAMUS_SYNTHESIZER_INSTRUCTIONS,
@@ -105,7 +105,7 @@ export async function POST(req: NextRequest) {
               content: `Question (${context.language}): ${userMessage}\n\nAgent notes:\n${agentNotesText}`,
             },
           ],
-          max_completion_tokens: LIMITS.chat(),
+          ...completionBudget({ maxCompletionTokens: LIMITS.chat() }),
         })
       );
 
